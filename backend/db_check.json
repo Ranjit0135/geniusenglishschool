@@ -1,0 +1,18 @@
+{
+  "schools": [
+    {
+      "id": "ac3d87d3-f86c-4872-ac14-bfba972f0c5d",
+      "name": "Genius English School",
+      "subdomain": "genius"
+    }
+  ],
+  "links": [
+    {
+      "id": "20f0b229-069a-4e0a-b533-71ccf5bcc07d",
+      "platform": "Instagram",
+      "url": "https://youtube.com",
+      "school_id": "ac3d87d3-f86c-4872-ac14-bfba972f0c5d",
+      "is_active": true
+    }
+  ]
+}

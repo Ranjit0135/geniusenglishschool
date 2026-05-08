@@ -1,0 +1,245 @@
+﻿[dotenv@17.2.4] injecting env (15) from .env -- tip: ≡ƒùé∩╕Å backup and recover secrets: https://dotenvx.com/ops
+Executing (default): SELECT 1+1 AS result
+COMPREHENSIVE Repair starting...
+Executing (default): SET FOREIGN_KEY_CHECKS = 0;
+Executing (default): ALTER TABLE `classes` DROP FOREIGN KEY `classes_ibfk_1`;
+Dropped FK classes_ibfk_1 on classes
+Executing (default): ALTER TABLE `navigation_items` DROP FOREIGN KEY `navigation_items_ibfk_148`;
+Executing (default): ALTER TABLE `navigation_items` DROP FOREIGN KEY `navigation_items_ibfk_132`;
+Executing (default): ALTER TABLE `subjects` DROP FOREIGN KEY `subjects_ibfk_1`;
+Dropped FK subjects_ibfk_1 on subjects
+Executing (default): ALTER TABLE `users` DROP FOREIGN KEY `users_ibfk_1`;
+Dropped FK users_ibfk_1 on users
+Executing (default): ALTER TABLE `about_contents` DROP FOREIGN KEY `about_contents_ibfk_1`;
+Executing (default): ALTER TABLE `gallery_items` DROP FOREIGN KEY `gallery_items_ibfk_1`;
+Executing (default): ALTER TABLE `about_contents` MODIFY `school_id` CHAR(36) BINARY;
+Success: about_contents.school_id is now CHAR(36) BINARY
+Executing (default): ALTER TABLE `blog_posts` MODIFY `school_id` CHAR(36) BINARY;
+Success: blog_posts.school_id is now CHAR(36) BINARY
+Executing (default): ALTER TABLE `classes` MODIFY `school_id` CHAR(36) BINARY;
+Success: classes.school_id is now CHAR(36) BINARY
+Executing (default): ALTER TABLE `events` MODIFY `school_id` CHAR(36) BINARY;
+Success: events.school_id is now CHAR(36) BINARY
+Executing (default): ALTER TABLE `gallery_items` MODIFY `school_id` CHAR(36) BINARY;
+Success: gallery_items.school_id is now CHAR(36) BINARY
+Executing (default): ALTER TABLE `hero_content` MODIFY `school_id` CHAR(36) BINARY;
+Success: hero_content.school_id is now CHAR(36) BINARY
+Executing (default): ALTER TABLE `navigation_items` MODIFY `school_id` CHAR(36) BINARY;
+Success: navigation_items.school_id is now CHAR(36) BINARY
+Executing (default): ALTER TABLE `news_items` MODIFY `school_id` CHAR(36) BINARY;
+Success: news_items.school_id is now CHAR(36) BINARY
+Executing (default): ALTER TABLE `subjects` MODIFY `school_id` CHAR(36) BINARY;
+Success: subjects.school_id is now CHAR(36) BINARY
+Executing (default): ALTER TABLE `testimonials` MODIFY `school_id` CHAR(36) BINARY;
+Success: testimonials.school_id is now CHAR(36) BINARY
+Executing (default): ALTER TABLE `users` MODIFY `school_id` CHAR(36) BINARY;
+Success: users.school_id is now CHAR(36) BINARY
+Executing (default): ALTER TABLE `schools` MODIFY `id` CHAR(36) BINARY NOT NULL;
+Executing (default): UPDATE `about_contents` SET `school_id` = '079f6234-cfd9-4124-a5fe-1b7de6452170' WHERE `school_id` NOT IN (SELECT `id` FROM `schools`)
+Fixed orphans in about_contents: 2 rows updated
+Executing (default): UPDATE `blog_posts` SET `school_id` = '079f6234-cfd9-4124-a5fe-1b7de6452170' WHERE `school_id` NOT IN (SELECT `id` FROM `schools`)
+Fixed orphans in blog_posts: 4 rows updated
+Executing (default): UPDATE `classes` SET `school_id` = '079f6234-cfd9-4124-a5fe-1b7de6452170' WHERE `school_id` NOT IN (SELECT `id` FROM `schools`)
+Fixed orphans in classes: 0 rows updated
+Executing (default): UPDATE `events` SET `school_id` = '079f6234-cfd9-4124-a5fe-1b7de6452170' WHERE `school_id` NOT IN (SELECT `id` FROM `schools`)
+Fixed orphans in events: 4 rows updated
+Executing (default): UPDATE `gallery_items` SET `school_id` = '079f6234-cfd9-4124-a5fe-1b7de6452170' WHERE `school_id` NOT IN (SELECT `id` FROM `schools`)
+Fixed orphans in gallery_items: 6 rows updated
+Executing (default): UPDATE `hero_content` SET `school_id` = '079f6234-cfd9-4124-a5fe-1b7de6452170' WHERE `school_id` NOT IN (SELECT `id` FROM `schools`)
+Fixed orphans in hero_content: 4 rows updated
+Executing (default): UPDATE `navigation_items` SET `school_id` = '079f6234-cfd9-4124-a5fe-1b7de6452170' WHERE `school_id` NOT IN (SELECT `id` FROM `schools`)
+Fixed orphans in navigation_items: 0 rows updated
+Executing (default): UPDATE `news_items` SET `school_id` = '079f6234-cfd9-4124-a5fe-1b7de6452170' WHERE `school_id` NOT IN (SELECT `id` FROM `schools`)
+Fixed orphans in news_items: 0 rows updated
+Executing (default): UPDATE `subjects` SET `school_id` = '079f6234-cfd9-4124-a5fe-1b7de6452170' WHERE `school_id` NOT IN (SELECT `id` FROM `schools`)
+Fixed orphans in subjects: 0 rows updated
+Executing (default): UPDATE `testimonials` SET `school_id` = '079f6234-cfd9-4124-a5fe-1b7de6452170' WHERE `school_id` NOT IN (SELECT `id` FROM `schools`)
+Fixed orphans in testimonials: 0 rows updated
+Executing (default): UPDATE `users` SET `school_id` = '079f6234-cfd9-4124-a5fe-1b7de6452170' WHERE `school_id` NOT IN (SELECT `id` FROM `schools`)
+Fixed orphans in users: 0 rows updated
+Executing (default): SET FOREIGN_KEY_CHECKS = 1;
+Repair finished. Attempting sync...
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'schools' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `schools`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'schools' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `schools` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `schools` CHANGE `subdomain` `subdomain` VARCHAR(255);
+Executing (default): ALTER TABLE `schools` CHANGE `custom_domain` `custom_domain` VARCHAR(255);
+Executing (default): ALTER TABLE `schools` CHANGE `logo_url` `logo_url` VARCHAR(255);
+Executing (default): ALTER TABLE `schools` CHANGE `theme_config` `theme_config` JSON;
+Executing (default): ALTER TABLE `schools` CHANGE `subscription_status` `subscription_status` ENUM('ACTIVE', 'INACTIVE', 'TRIAL') DEFAULT 'ACTIVE';
+Executing (default): ALTER TABLE `schools` CHANGE `template_id` `template_id` VARCHAR(255) DEFAULT 'kingster';
+Executing (default): ALTER TABLE `schools` CHANGE `setup_status` `setup_status` ENUM('PENDING', 'IN_PROGRESS', 'COMPLETED') DEFAULT 'PENDING';
+Executing (default): ALTER TABLE `schools` CHANGE `is_approved` `is_approved` TINYINT(1) DEFAULT false;
+Executing (default): ALTER TABLE `schools` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `schools` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+Executing (default): SHOW INDEX FROM `schools`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `users`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'users' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `users` ADD FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+Executing (default): ALTER TABLE `users` CHANGE `email` `email` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `users` CHANGE `name` `name` VARCHAR(255);
+Executing (default): ALTER TABLE `users` CHANGE `avatar_url` `avatar_url` VARCHAR(255);
+Executing (default): ALTER TABLE `users` CHANGE `password_hash` `password_hash` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `users` CHANGE `role` `role` ENUM('SUPER_ADMIN', 'ADMIN', 'TEACHER', 'STUDENT', 'PARENT') DEFAULT 'STUDENT';
+Executing (default): ALTER TABLE `users` CHANGE `is_active` `is_active` TINYINT(1) DEFAULT true;
+Executing (default): ALTER TABLE `users` CHANGE `is_verified` `is_verified` TINYINT(1) DEFAULT false;
+Executing (default): ALTER TABLE `users` CHANGE `verification_otp` `verification_otp` VARCHAR(255);
+Executing (default): ALTER TABLE `users` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `users` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+Executing (default): SHOW INDEX FROM `users`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'navigation_items' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `navigation_items`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'navigation_items' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='navigation_items' AND constraint_name = 'navigation_items_ibfk_158' AND TABLE_SCHEMA = 'genius_school_db';
+Executing (default): ALTER TABLE `navigation_items` DROP FOREIGN KEY `navigation_items_ibfk_158`;
+Executing (default): ALTER TABLE `navigation_items` ADD FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+Executing (default): ALTER TABLE `navigation_items` CHANGE `label` `label` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `navigation_items` CHANGE `path` `path` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `navigation_items` CHANGE `order` `order` INTEGER DEFAULT 0;
+Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='navigation_items' AND constraint_name = 'navigation_items_ibfk_159' AND TABLE_SCHEMA = 'genius_school_db';
+Executing (default): ALTER TABLE `navigation_items` DROP FOREIGN KEY `navigation_items_ibfk_159`;
+Executing (default): ALTER TABLE `navigation_items` ADD FOREIGN KEY (`parent_id`) REFERENCES `navigation_items` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+Executing (default): ALTER TABLE `navigation_items` CHANGE `is_visible` `is_visible` TINYINT(1) DEFAULT true;
+Executing (default): SHOW INDEX FROM `navigation_items`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'classes' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `classes`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'classes' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `classes` ADD FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+Executing (default): ALTER TABLE `classes` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `classes` CHANGE `section` `section` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `classes` CHANGE `class_teacher_id` `class_teacher_id` CHAR(36) BINARY;
+Executing (default): SHOW INDEX FROM `classes`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'subjects' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `subjects`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'subjects' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `subjects` ADD FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+Executing (default): ALTER TABLE `subjects` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `subjects` CHANGE `code` `code` VARCHAR(255);
+Executing (default): ALTER TABLE `subjects` CHANGE `type` `type` ENUM('THEORY', 'PRACTICAL') DEFAULT 'THEORY';
+Executing (default): SHOW INDEX FROM `subjects`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'about_contents' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `about_contents`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'about_contents' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `about_contents` ADD FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`);
+Executing (default): ALTER TABLE `about_contents` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `about_contents` CHANGE `description` `description` TEXT NOT NULL;
+Executing (default): ALTER TABLE `about_contents` CHANGE `mission` `mission` TEXT;
+Executing (default): ALTER TABLE `about_contents` CHANGE `vision` `vision` TEXT;
+Executing (default): ALTER TABLE `about_contents` CHANGE `image_url` `image_url` VARCHAR(255);
+Executing (default): ALTER TABLE `about_contents` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `about_contents` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+Executing (default): SHOW INDEX FROM `about_contents`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'gallery_items' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `gallery_items`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'gallery_items' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `gallery_items` ADD FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`);
+Executing (default): ALTER TABLE `gallery_items` CHANGE `title` `title` VARCHAR(255);
+Executing (default): ALTER TABLE `gallery_items` CHANGE `description` `description` VARCHAR(255);
+Executing (default): ALTER TABLE `gallery_items` CHANGE `media_url` `media_url` TEXT NOT NULL;
+Executing (default): ALTER TABLE `gallery_items` CHANGE `media_type` `media_type` ENUM('image', 'video') DEFAULT 'image';
+Executing (default): ALTER TABLE `gallery_items` CHANGE `category` `category` VARCHAR(255);
+Executing (default): ALTER TABLE `gallery_items` CHANGE `is_visible` `is_visible` TINYINT(1) DEFAULT true;
+Executing (default): ALTER TABLE `gallery_items` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `gallery_items` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+Executing (default): SHOW INDEX FROM `gallery_items`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'blog_posts' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `blog_posts`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'blog_posts' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `blog_posts` ADD FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`);
+Executing (default): ALTER TABLE `blog_posts` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `blog_posts` CHANGE `slug` `slug` VARCHAR(255) NOT NULL UNIQUE;
+Executing (default): ALTER TABLE `blog_posts` CHANGE `content` `content` TEXT NOT NULL;
+Executing (default): ALTER TABLE `blog_posts` CHANGE `excerpt` `excerpt` TEXT;
+Executing (default): ALTER TABLE `blog_posts` CHANGE `author_name` `author_name` VARCHAR(255);
+Executing (default): ALTER TABLE `blog_posts` CHANGE `category` `category` VARCHAR(255);
+Executing (default): ALTER TABLE `blog_posts` CHANGE `tags` `tags` VARCHAR(255);
+Executing (default): ALTER TABLE `blog_posts` CHANGE `image_url` `image_url` TEXT;
+Executing (default): ALTER TABLE `blog_posts` CHANGE `is_sticky` `is_sticky` TINYINT(1) DEFAULT false;
+Executing (default): ALTER TABLE `blog_posts` CHANGE `is_published` `is_published` TINYINT(1) DEFAULT true;
+Executing (default): ALTER TABLE `blog_posts` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `blog_posts` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `blog_posts` CHANGE `sub_heading` `sub_heading` TEXT;
+Executing (default): ALTER TABLE `blog_posts` CHANGE `sub_content` `sub_content` TEXT;
+Executing (default): ALTER TABLE `blog_posts` CHANGE `sub_image_url` `sub_image_url` TEXT;
+Executing (default): ALTER TABLE `blog_posts` CHANGE `additional_sections` `additional_sections` JSON;
+Executing (default): SHOW INDEX FROM `blog_posts`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'events' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `events`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'events' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `events` ADD FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`);
+Executing (default): ALTER TABLE `events` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `events` CHANGE `description` `description` TEXT;
+Executing (default): ALTER TABLE `events` CHANGE `date` `date` DATE NOT NULL;
+Executing (default): ALTER TABLE `events` CHANGE `time_range` `time_range` VARCHAR(255);
+Executing (default): ALTER TABLE `events` CHANGE `location` `location` VARCHAR(255);
+Executing (default): ALTER TABLE `events` CHANGE `is_published` `is_published` TINYINT(1) DEFAULT true;
+Executing (default): ALTER TABLE `events` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `events` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `events` CHANGE `category` `category` VARCHAR(255) DEFAULT 'Academic';
+Executing (default): ALTER TABLE `events` CHANGE `sub_heading` `sub_heading` TEXT;
+Executing (default): ALTER TABLE `events` CHANGE `sub_content` `sub_content` TEXT;
+Executing (default): ALTER TABLE `events` CHANGE `sub_image_url` `sub_image_url` TEXT;
+Executing (default): ALTER TABLE `events` CHANGE `additional_sections` `additional_sections` JSON;
+Executing (default): ALTER TABLE `events` CHANGE `image_url` `image_url` TEXT;
+Executing (default): SHOW INDEX FROM `events`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'news_items' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `news_items`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'news_items' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `news_items` ADD FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`);
+Executing (default): ALTER TABLE `news_items` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `news_items` CHANGE `slug` `slug` VARCHAR(255) NOT NULL UNIQUE;
+Executing (default): ALTER TABLE `news_items` CHANGE `content` `content` TEXT NOT NULL;
+Executing (default): ALTER TABLE `news_items` CHANGE `excerpt` `excerpt` TEXT;
+Executing (default): ALTER TABLE `news_items` CHANGE `author_name` `author_name` VARCHAR(255);
+Executing (default): ALTER TABLE `news_items` CHANGE `category` `category` VARCHAR(255) DEFAULT 'School News';
+Executing (default): ALTER TABLE `news_items` CHANGE `image_url` `image_url` TEXT;
+Executing (default): ALTER TABLE `news_items` CHANGE `sub_heading` `sub_heading` TEXT;
+Executing (default): ALTER TABLE `news_items` CHANGE `sub_content` `sub_content` TEXT;
+Executing (default): ALTER TABLE `news_items` CHANGE `sub_image_url` `sub_image_url` TEXT;
+Executing (default): ALTER TABLE `news_items` CHANGE `additional_sections` `additional_sections` JSON;
+Executing (default): ALTER TABLE `news_items` CHANGE `is_published` `is_published` TINYINT(1) DEFAULT true;
+Executing (default): ALTER TABLE `news_items` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `news_items` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+Executing (default): SHOW INDEX FROM `news_items`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'hero_content' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `hero_content`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'hero_content' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `hero_content` ADD `principal_facebook` VARCHAR(255);
+Executing (default): ALTER TABLE `hero_content` ADD `principal_twitter` VARCHAR(255);
+Executing (default): ALTER TABLE `hero_content` ADD `principal_linkedin` VARCHAR(255);
+Executing (default): ALTER TABLE `hero_content` ADD `principal_instagram` VARCHAR(255);
+Executing (default): ALTER TABLE `hero_content` ADD FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`);
+Executing (default): ALTER TABLE `hero_content` CHANGE `subtitle` `subtitle` VARCHAR(255) DEFAULT 'Welcome to';
+Executing (default): ALTER TABLE `hero_content` CHANGE `title_main` `title_main` VARCHAR(255) NOT NULL DEFAULT 'Genius English';
+Executing (default): ALTER TABLE `hero_content` CHANGE `title_highlight` `title_highlight` VARCHAR(255) DEFAULT 'School';
+Executing (default): ALTER TABLE `hero_content` CHANGE `description` `description` TEXT;
+Executing (default): ALTER TABLE `hero_content` CHANGE `button_text` `button_text` VARCHAR(255) DEFAULT 'Take a Tour';
+Executing (default): ALTER TABLE `hero_content` CHANGE `button_link` `button_link` VARCHAR(255) DEFAULT '#tour';
+Executing (default): ALTER TABLE `hero_content` CHANGE `image_url` `image_url` VARCHAR(255);
+Executing (default): ALTER TABLE `hero_content` CHANGE `is_active` `is_active` TINYINT(1) DEFAULT true;
+Executing (default): ALTER TABLE `hero_content` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `hero_content` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `hero_content` CHANGE `principal_name` `principal_name` VARCHAR(255) DEFAULT 'Newman Sarah';
+Executing (default): ALTER TABLE `hero_content` CHANGE `principal_role` `principal_role` VARCHAR(255) DEFAULT 'Principal';
+Executing (default): ALTER TABLE `hero_content` CHANGE `principal_message` `principal_message` TEXT;
+Executing (default): ALTER TABLE `hero_content` CHANGE `principal_image_url` `principal_image_url` VARCHAR(255);
+Executing (default): SHOW INDEX FROM `hero_content`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'principal_contents' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): CREATE TABLE IF NOT EXISTS `principal_contents` (`id` INTEGER auto_increment , `school_id` CHAR(36) BINARY NOT NULL, `principal_name` VARCHAR(255) DEFAULT 'Subodh Raimajhi', `principal_role` VARCHAR(255) DEFAULT 'Principal', `principal_message` TEXT, `principal_image_url` VARCHAR(255), `facebook_url` VARCHAR(255), `twitter_url` VARCHAR(255), `linkedin_url` VARCHAR(255), `instagram_url` VARCHAR(255), `is_active` TINYINT(1) DEFAULT true, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`), FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`) ON DELETE CASCADE) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `principal_contents`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'testimonials' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `testimonials`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'testimonials' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `testimonials` ADD FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`);
+Executing (default): ALTER TABLE `testimonials` CHANGE `author_name` `author_name` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `testimonials` CHANGE `author_role` `author_role` VARCHAR(255) DEFAULT 'Parent';
+Executing (default): ALTER TABLE `testimonials` CHANGE `content` `content` TEXT NOT NULL;
+Executing (default): ALTER TABLE `testimonials` CHANGE `image_url` `image_url` VARCHAR(255);
+Executing (default): ALTER TABLE `testimonials` CHANGE `rating` `rating` INTEGER DEFAULT 5;
+Executing (default): ALTER TABLE `testimonials` CHANGE `is_published` `is_published` TINYINT(1) DEFAULT true;
+Executing (default): ALTER TABLE `testimonials` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `testimonials` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+Executing (default): SHOW INDEX FROM `testimonials`
+SYNC SUCCESSFUL!

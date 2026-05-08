@@ -1,0 +1,98 @@
+[
+  {
+    "Field": "id",
+    "Type": "char(36)",
+    "Null": "NO",
+    "Key": "PRI",
+    "Default": null,
+    "Extra": ""
+  },
+  {
+    "Field": "name",
+    "Type": "varchar(255)",
+    "Null": "NO",
+    "Key": "",
+    "Default": null,
+    "Extra": ""
+  },
+  {
+    "Field": "subdomain",
+    "Type": "varchar(255)",
+    "Null": "YES",
+    "Key": "UNI",
+    "Default": null,
+    "Extra": ""
+  },
+  {
+    "Field": "custom_domain",
+    "Type": "varchar(255)",
+    "Null": "YES",
+    "Key": "UNI",
+    "Default": null,
+    "Extra": ""
+  },
+  {
+    "Field": "logo_url",
+    "Type": "varchar(255)",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": ""
+  },
+  {
+    "Field": "theme_config",
+    "Type": "longtext",
+    "Null": "YES",
+    "Key": "",
+    "Default": null,
+    "Extra": ""
+  },
+  {
+    "Field": "subscription_status",
+    "Type": "enum('ACTIVE','INACTIVE','TRIAL')",
+    "Null": "YES",
+    "Key": "",
+    "Default": "ACTIVE",
+    "Extra": ""
+  },
+  {
+    "Field": "template_id",
+    "Type": "varchar(255)",
+    "Null": "YES",
+    "Key": "",
+    "Default": "kingster",
+    "Extra": ""
+  },
+  {
+    "Field": "createdAt",
+    "Type": "datetime",
+    "Null": "NO",
+    "Key": "",
+    "Default": null,
+    "Extra": ""
+  },
+  {
+    "Field": "updatedAt",
+    "Type": "datetime",
+    "Null": "NO",
+    "Key": "",
+    "Default": null,
+    "Extra": ""
+  },
+  {
+    "Field": "setup_status",
+    "Type": "enum('PENDING','IN_PROGRESS','COMPLETED')",
+    "Null": "YES",
+    "Key": "",
+    "Default": "PENDING",
+    "Extra": ""
+  },
+  {
+    "Field": "is_approved",
+    "Type": "tinyint(1)",
+    "Null": "YES",
+    "Key": "",
+    "Default": "0",
+    "Extra": ""
+  }
+]

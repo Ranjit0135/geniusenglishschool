@@ -1,0 +1,74 @@
+﻿[dotenv@17.2.4] injecting env (15) from .env -- tip: ≡ƒùé∩╕Å backup and recover secrets: https://dotenvx.com/ops
+Starting FINAL manual sync check...
+Executing (default): SELECT 1+1 AS result
+Connected.
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'schools' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `schools`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'schools' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `schools` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `schools` CHANGE `subdomain` `subdomain` VARCHAR(255);
+Executing (default): ALTER TABLE `schools` CHANGE `custom_domain` `custom_domain` VARCHAR(255);
+Executing (default): ALTER TABLE `schools` CHANGE `logo_url` `logo_url` VARCHAR(255);
+Executing (default): ALTER TABLE `schools` CHANGE `theme_config` `theme_config` JSON;
+Executing (default): ALTER TABLE `schools` CHANGE `subscription_status` `subscription_status` ENUM('ACTIVE', 'INACTIVE', 'TRIAL') DEFAULT 'ACTIVE';
+Executing (default): ALTER TABLE `schools` CHANGE `template_id` `template_id` VARCHAR(255) DEFAULT 'kingster';
+Executing (default): ALTER TABLE `schools` CHANGE `setup_status` `setup_status` ENUM('PENDING', 'IN_PROGRESS', 'COMPLETED') DEFAULT 'PENDING';
+Executing (default): ALTER TABLE `schools` CHANGE `is_approved` `is_approved` TINYINT(1) DEFAULT false;
+Executing (default): ALTER TABLE `schools` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `schools` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+Executing (default): SHOW INDEX FROM `schools`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `users`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'users' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='users' AND constraint_name = 'users_ibfk_1' AND TABLE_SCHEMA = 'genius_school_db';
+Executing (default): ALTER TABLE `users` DROP FOREIGN KEY `users_ibfk_1`;
+Executing (default): ALTER TABLE `users` ADD FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+Executing (default): ALTER TABLE `users` CHANGE `email` `email` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `users` CHANGE `name` `name` VARCHAR(255);
+Executing (default): ALTER TABLE `users` CHANGE `avatar_url` `avatar_url` VARCHAR(255);
+Executing (default): ALTER TABLE `users` CHANGE `password_hash` `password_hash` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `users` CHANGE `role` `role` ENUM('SUPER_ADMIN', 'ADMIN', 'TEACHER', 'STUDENT', 'PARENT') DEFAULT 'STUDENT';
+Executing (default): ALTER TABLE `users` CHANGE `is_active` `is_active` TINYINT(1) DEFAULT true;
+Executing (default): ALTER TABLE `users` CHANGE `is_verified` `is_verified` TINYINT(1) DEFAULT false;
+Executing (default): ALTER TABLE `users` CHANGE `verification_otp` `verification_otp` VARCHAR(255);
+Executing (default): ALTER TABLE `users` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `users` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+Executing (default): SHOW INDEX FROM `users`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'navigation_items' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `navigation_items`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'navigation_items' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='navigation_items' AND constraint_name = 'navigation_items_ibfk_144' AND TABLE_SCHEMA = 'genius_school_db';
+Executing (default): ALTER TABLE `navigation_items` DROP FOREIGN KEY `navigation_items_ibfk_144`;
+Executing (default): ALTER TABLE `navigation_items` ADD FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+Executing (default): ALTER TABLE `navigation_items` CHANGE `label` `label` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `navigation_items` CHANGE `path` `path` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `navigation_items` CHANGE `order` `order` INTEGER DEFAULT 0;
+Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='navigation_items' AND constraint_name = 'navigation_items_ibfk_145' AND TABLE_SCHEMA = 'genius_school_db';
+Executing (default): ALTER TABLE `navigation_items` DROP FOREIGN KEY `navigation_items_ibfk_145`;
+Executing (default): ALTER TABLE `navigation_items` ADD FOREIGN KEY (`parent_id`) REFERENCES `navigation_items` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+Executing (default): ALTER TABLE `navigation_items` CHANGE `is_visible` `is_visible` TINYINT(1) DEFAULT true;
+Executing (default): SHOW INDEX FROM `navigation_items`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'classes' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `classes`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'classes' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='classes' AND constraint_name = 'classes_ibfk_1' AND TABLE_SCHEMA = 'genius_school_db';
+Executing (default): ALTER TABLE `classes` DROP FOREIGN KEY `classes_ibfk_1`;
+Executing (default): ALTER TABLE `classes` ADD FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+Executing (default): ALTER TABLE `classes` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `classes` CHANGE `section` `section` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `classes` CHANGE `class_teacher_id` `class_teacher_id` CHAR(36) BINARY;
+Executing (default): SHOW INDEX FROM `classes`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'subjects' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `subjects`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'subjects' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='subjects' AND constraint_name = 'subjects_ibfk_1' AND TABLE_SCHEMA = 'genius_school_db';
+Executing (default): ALTER TABLE `subjects` DROP FOREIGN KEY `subjects_ibfk_1`;
+Executing (default): ALTER TABLE `subjects` ADD FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+Executing (default): ALTER TABLE `subjects` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `subjects` CHANGE `code` `code` VARCHAR(255);
+Executing (default): ALTER TABLE `subjects` CHANGE `type` `type` ENUM('THEORY', 'PRACTICAL') DEFAULT 'THEORY';
+Executing (default): SHOW INDEX FROM `subjects`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'about_contents' AND TABLE_SCHEMA = 'genius_school_db'
+Executing (default): SHOW FULL COLUMNS FROM `about_contents`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'about_contents' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='genius_school_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `about_contents` ADD FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`);

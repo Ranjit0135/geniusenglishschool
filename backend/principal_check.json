@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "school_id": "ac3d87d3-f86c-4872-ac14-bfba972f0c5d",
+    "principal_name": "Subodh Raimajhi",
+    "principal_role": "Principal",
+    "principal_message": "Education is not just about books; it's about building character and igniting a lifelong passion for learning in every child.",
+    "principal_image_url": "https://res.cloudinary.com/dvtmwoedm/image/upload/v1771655173/genius-school-assets/jjmkw4hd7o1zowp55pfy.webp",
+    "facebook_url": "",
+    "twitter_url": "",
+    "linkedin_url": "",
+    "instagram_url": "",
+    "social_links": null,
+    "is_active": true,
+    "createdAt": "2026-02-21T06:24:14.000Z",
+    "updatedAt": "2026-02-21T06:26:13.000Z"
+  }
+]
